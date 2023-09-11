@@ -6,18 +6,18 @@
      run: playbooks/validate.yml
 
 - job:
-    name: terraform-base-validate-testbed
+    name: terraform-base-validate-testbed-default
     parent: terraform-base-validate
     vars:
-      name: testbed
+      name: testbed-default
 
 - project:
     merge-mode: squash-merge
     check:
       jobs:
-        - terraform-base-validate-testbed
+        - terraform-base-validate-testbed-default
         - yamllint
     periodic-daily:
       jobs:
-        - terraform-base-validate
+        - terraform-base-validate-testbed-default
         - yamllint

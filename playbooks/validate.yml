@@ -3,7 +3,7 @@
   hosts: all
 
   vars:
-    name: testbed
+    name: testbed-default
     terraform_binary: "{{ ansible_user_dir }}/.local/bin/terraform"
 
   tasks:

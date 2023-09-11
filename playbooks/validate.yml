@@ -1,0 +1,14 @@
+---
+- name: Validate terraform files
+  hosts: all
+
+  vars:
+    name: testbed
+    terraform_binary: "{{ ansible_user_dir }}/.local/bin/terraform"
+
+  tasks:
+    - name: Check syntax of terraform files
+      ansible.builtin.command:
+        chdir: "{{ zuul.project.src_dir }}/{{ name }}"
+        cmd: "{{ terraform_binary }} fmt -check"
+      changed_when: true

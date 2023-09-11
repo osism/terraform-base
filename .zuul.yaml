@@ -1,13 +1,27 @@
 ---
+- job:
+     name: terraform-base-validate
+     abstract: true
+     pre-run: playbooks/pre-validate.yml
+     run: playbooks/validate.yml
+
+- job:
+    name: terraform-base-validate-testbed
+    parent: terraform-base-validate
+    vars:
+      name: testbed
+
 - project:
     merge-mode: squash-merge
     check:
       jobs:
         - ansible-lint
-        - yamllint
         - flake8
+        - terraform-base-validate-testbed
+        - yamllint
     periodic-daily:
       jobs:
         - ansible-lint
-        - yamllint
         - flake8
+        - terraform-base-validate
+        - yamllint

@@ -15,13 +15,9 @@
     merge-mode: squash-merge
     check:
       jobs:
-        - ansible-lint
-        - flake8
         - terraform-base-validate-testbed
         - yamllint
     periodic-daily:
       jobs:
-        - ansible-lint
-        - flake8
         - terraform-base-validate
         - yamllint

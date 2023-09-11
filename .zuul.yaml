@@ -1,0 +1,13 @@
+---
+- project:
+    merge-mode: squash-merge
+    check:
+      jobs:
+        - ansible-lint
+        - yamllint
+        - flake8
+    periodic-daily:
+      jobs:
+        - ansible-lint
+        - yamllint
+        - flake8

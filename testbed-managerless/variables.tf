@@ -29,7 +29,7 @@ variable "volume_size_storage" {
 
 variable "volume_type" {
   type    = string
-  default = "__DEFAULT__"
+  default = null
 }
 
 variable "flavor_node" {

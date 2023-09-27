@@ -9,15 +9,15 @@ resource "openstack_compute_secgroup_v2" "security_group_management" {
   rule {
     cidr        = "0.0.0.0/0"
     ip_protocol = "tcp"
-    from_port   = 1
-    to_port     = 65535
+    from_port   = 22
+    to_port     = 22
   }
 
   rule {
     cidr        = "0.0.0.0/0"
     ip_protocol = "udp"
-    from_port   = 1
-    to_port     = 65535
+    from_port   = 51820
+    to_port     = 51820
   }
 
   rule {

@@ -2,22 +2,22 @@
 # Security groups #
 ###################
 
-resource "openstack_compute_secgroup_v2" "security_group_management" {
-  name        = "${var.prefix}-management"
-  description = "management security group"
+resource "openstack_compute_secgroup_v2" "security_group_node" {
+  name        = "${var.prefix}-node"
+  description = "node security group"
 
   rule {
     cidr        = "0.0.0.0/0"
     ip_protocol = "tcp"
-    from_port   = 22
-    to_port     = 22
+    from_port   = 1
+    to_port     = 65535
   }
 
   rule {
     cidr        = "0.0.0.0/0"
     ip_protocol = "udp"
-    from_port   = 51820
-    to_port     = 51820
+    from_port   = 1
+    to_port     = 65535
   }
 
   rule {
@@ -33,7 +33,7 @@ resource "openstack_networking_secgroup_rule_v2" "security_group_rule_vrrp" {
   ethertype         = "IPv4"
   protocol          = "112" # vrrp
   remote_ip_prefix  = "0.0.0.0/0"
-  security_group_id = openstack_compute_secgroup_v2.security_group_management.id
+  security_group_id = openstack_compute_secgroup_v2.security_group_node.id
 }
 
 ############

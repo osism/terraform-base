@@ -65,6 +65,8 @@ write_files:
 
       export REFSTACK=${var.refstack}
 
+      export IS_ZUUL=${var.is_zuul}
+
     path: /opt/manager-vars.sh
     permissions: '0644'
 runcmd:

@@ -61,10 +61,7 @@ write_files:
       export MANAGER_VERSION=${var.manager_version}
       export OPENSTACK_VERSION=${var.openstack_version}
 
-      export DEPLOY_MONITORING=${var.deploy_monitoring}
-
       export REFSTACK=${var.refstack}
-
       export IS_ZUUL=${var.is_zuul}
 
     path: /opt/manager-vars.sh

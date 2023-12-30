@@ -49,10 +49,26 @@ write_files:
   - content: |
       #!/usr/bin/env bash
 
+      if [[ -e /etc/osism-ci-image ]]; then
+          # import images
+          for image in $(find /opt/images/manager -maxdepth 1 -mindepth 1); do
+              sudo -u dragon skopeo copy dir:$image docker-daemon:osism.harbor.regio.digital/osism/$(basename $image)
+              sudo -u dragon docker pull osism.harbor.regio.digital/osism/$(basename $image)
+          done
+      fi
+
+    path: /usr/local/bin/osism-testbed-import-images.sh
+    permissions: '0755'
+  - content: |
+      #!/usr/bin/env bash
+
       chronyc -a makestep
       touch /var/lib/apt/periodic/update-success-stamp
       echo 'network: {config: disabled}' > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
       chown -R ubuntu:ubuntu /home/ubuntu
+
+      /usr/local/bin/osism-testbed-import-images.sh &>/dev/null & disown
+
     path: /usr/local/bin/osism-testbed.sh
     permissions: '0755'
   - content: ${openstack_compute_keypair_v2.key.public_key}

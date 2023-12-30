@@ -23,7 +23,7 @@ resource "openstack_compute_instance_v2" "node_server" {
 network:
    config: disabled
 mounts:
-  - [ ephemeral0 ]
+  - [ ephemeral0, null ]
 ntp:
   enabled: true
   ntp_client: chrony

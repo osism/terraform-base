@@ -29,11 +29,18 @@ ntp:
   ntp_client: chrony
 package_update: true
 package_upgrade: true
+write_files:
+  - content: |
+      #!/usr/bin/env bash
+
+      chronyc -a makestep
+      touch /var/lib/apt/periodic/update-success-stamp
+      echo 'network: {config: disabled}' > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+      chown -R ubuntu:ubuntu /home/ubuntu
+    path: /usr/local/bin/osism-testbed.sh
+    permissions: '0755'
 runcmd:
-  - "chronyc -a makestep"
-  - "apt-get update"
-  - "touch /var/lib/apt/periodic/update-success-stamp"
-  - "echo 'network: {config: disabled}' > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg"
+  - "/usr/local/bin/osism-testbed.sh"
 final_message: "The system is finally up, after $UPTIME seconds"
 EOT
 }

@@ -49,7 +49,9 @@ write_files:
   - content: |
       #!/usr/bin/env bash
 
-      if [[ -e /etc/osism-ci-image ]]; then
+      source /opt/manager-vars.sh
+
+      if [[ -e /etc/osism-ci-image && "$MANAGER_VERSION" != "latest" ]]; then
           # import images
           for image in $(find /opt/images/manager -maxdepth 1 -mindepth 1); do
               sudo -u dragon skopeo copy dir:$image docker-daemon:osism.harbor.regio.digital/osism/$(basename $image)
@@ -67,7 +69,7 @@ write_files:
       echo 'network: {config: disabled}' > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
       chown -R ubuntu:ubuntu /home/ubuntu
 
-      /usr/local/bin/osism-testbed-import-images.sh &>/dev/null & disown
+      /usr/local/bin/osism-testbed-import-images.sh
 
     path: /usr/local/bin/osism-testbed.sh
     permissions: '0755'

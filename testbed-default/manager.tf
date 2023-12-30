@@ -46,6 +46,15 @@ ntp:
 package_update: true
 package_upgrade: false
 write_files:
+  - content: |
+      #!/usr/bin/env bash
+
+      chronyc -a makestep
+      touch /var/lib/apt/periodic/update-success-stamp
+      echo 'network: {config: disabled}' > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+      chown -R ubuntu:ubuntu /home/ubuntu
+    path: /usr/local/bin/osism-testbed.sh
+    permissions: '0755'
   - content: ${openstack_compute_keypair_v2.key.public_key}
     path: /home/ubuntu/.ssh/id_rsa.pub
     permissions: '0600'
@@ -67,11 +76,7 @@ write_files:
     path: /opt/manager-vars.sh
     permissions: '0644'
 runcmd:
-  - "chronyc -a makestep"
-  - "apt-get update"
-  - "touch /var/lib/apt/periodic/update-success-stamp"
-  - "echo 'network: {config: disabled}' > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg"
-  - "chown -R ubuntu:ubuntu /home/ubuntu"
+  - "/usr/local/bin/osism-testbed.sh"
 final_message: "The system is finally up, after $UPTIME seconds"
 EOT
 

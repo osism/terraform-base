@@ -19,12 +19,12 @@ variable "image_node" {
 
 variable "volume_size_base" {
   type    = number
-  default = 30
+  default = 80
 }
 
 variable "volume_size_storage" {
   type    = number
-  default = 10
+  default = 20
 }
 
 variable "volume_type" {

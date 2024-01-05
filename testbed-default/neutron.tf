@@ -40,38 +40,24 @@ resource "openstack_compute_secgroup_v2" "security_group_management" {
   }
 
   rule {
-    cidr        = "192.168.16.0/20"
-    ip_protocol = "tcp"
-    from_port   = 80
-    to_port     = 80
-  }
-
-  rule {
-    cidr        = "192.168.16.0/20"
-    ip_protocol = "tcp"
-    from_port   = 443
-    to_port     = 443
-  }
-
-  rule {
-    cidr        = "192.168.16.0/20"
-    ip_protocol = "tcp"
-    from_port   = 3128
-    to_port     = 3128
-  }
-
-  rule {
-    cidr        = "192.168.16.0/20"
-    ip_protocol = "tcp"
-    from_port   = 9091
-    to_port     = 9091
-  }
-
-  rule {
     cidr        = "0.0.0.0/0"
     ip_protocol = "udp"
     from_port   = 51820
     to_port     = 51820
+  }
+
+  rule {
+    cidr        = "192.168.16.0/20"
+    ip_protocol = "tcp"
+    from_port   = 1
+    to_port     = 65535
+  }
+
+  rule {
+    cidr        = "192.168.16.0/20"
+    ip_protocol = "udp"
+    from_port   = 1
+    to_port     = 65535
   }
 
   rule {

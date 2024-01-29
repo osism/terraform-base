@@ -111,3 +111,8 @@ variable "dns_nameservers" {
   type    = list(string)
   default = ["8.8.8.8", "9.9.9.9"]
 }
+
+variable "is_zuul" {
+  type    = bool
+  default = false
+}

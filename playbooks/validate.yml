@@ -4,11 +4,23 @@
 
   vars:
     name: testbed-default
-    terraform_binary: "{{ ansible_user_dir }}/.local/bin/terraform"
+
+    opentofu_binary: tofu
+    opentofu_version: "1.6.1"
+    opentofu_download_url: "https://github.com/opentofu/opentofu/releases/download/v{{ opentofu_version }}/tofu_{{ opentofu_version }}_linux_amd64.zip"
 
   tasks:
+    - name: Get opentofu binary
+      become: true
+      ansible.builtin.unarchive:
+        src: "{{ opentofu_download_url }}"
+        dest: /usr/local/bin
+        remote_src: yes
+        include:
+          - tofu
+
     - name: Check syntax of terraform files
       ansible.builtin.command:
         chdir: "{{ zuul.project.src_dir }}/{{ name }}"
-        cmd: "{{ terraform_binary }} fmt -check"
+        cmd: "{{ opentofu_binary }} fmt -check"
       changed_when: true

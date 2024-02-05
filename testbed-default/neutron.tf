@@ -2,70 +2,82 @@
 # Security groups #
 ###################
 
-resource "openstack_compute_secgroup_v2" "security_group_node" {
+resource "openstack_networking_secgroup_v2" "security_group_node" {
   name        = "${var.prefix}-node"
   description = "node security group"
-
-  rule {
-    cidr        = "0.0.0.0/0"
-    ip_protocol = "tcp"
-    from_port   = 1
-    to_port     = 65535
-  }
-
-  rule {
-    cidr        = "0.0.0.0/0"
-    ip_protocol = "udp"
-    from_port   = 1
-    to_port     = 65535
-  }
-
-  rule {
-    cidr        = "0.0.0.0/0"
-    ip_protocol = "icmp"
-    from_port   = -1
-    to_port     = -1
-  }
 }
 
-resource "openstack_compute_secgroup_v2" "security_group_management" {
+resource "openstack_networking_secgroup_rule_v2" "security_group_node_rule1" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  remote_ip_prefix  = "0.0.0.0/0"
+  protocol          = "tcp"
+  security_group_id = openstack_networking_secgroup_v2.security_group_node.id
+}
+
+resource "openstack_networking_secgroup_rule_v2" "security_group_node_rule2" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  remote_ip_prefix  = "0.0.0.0/0"
+  protocol          = "udp"
+  security_group_id = openstack_networking_secgroup_v2.security_group_node.id
+}
+
+resource "openstack_networking_secgroup_rule_v2" "security_group_node_rule3" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  remote_ip_prefix  = "0.0.0.0/0"
+  protocol          = "icmp"
+  security_group_id = openstack_networking_secgroup_v2.security_group_node.id
+}
+
+resource "openstack_networking_secgroup_v2" "security_group_management" {
   name        = "${var.prefix}-management"
   description = "management security group"
+}
 
-  rule {
-    cidr        = "0.0.0.0/0"
-    ip_protocol = "tcp"
-    from_port   = 22
-    to_port     = 22
-  }
+resource "openstack_networking_secgroup_rule_v2" "security_group_management_rule1" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  remote_ip_prefix  = "0.0.0.0/0"
+  protocol          = "tcp"
+  port_range_min    = 22
+  port_range_max    = 22
+  security_group_id = openstack_networking_secgroup_v2.security_group_management.id
+}
 
-  rule {
-    cidr        = "0.0.0.0/0"
-    ip_protocol = "udp"
-    from_port   = 51820
-    to_port     = 51820
-  }
+resource "openstack_networking_secgroup_rule_v2" "security_group_management_rule2" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  remote_ip_prefix  = "0.0.0.0/0"
+  protocol          = "udp"
+  port_range_min    = 51820
+  port_range_max    = 51820
+  security_group_id = openstack_networking_secgroup_v2.security_group_management.id
+}
 
-  rule {
-    cidr        = "192.168.16.0/20"
-    ip_protocol = "tcp"
-    from_port   = 1
-    to_port     = 65535
-  }
+resource "openstack_networking_secgroup_rule_v2" "security_group_management_rule3" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  remote_ip_prefix  = "192.168.16.0/20"
+  protocol          = "tcp"
+  security_group_id = openstack_networking_secgroup_v2.security_group_management.id
+}
 
-  rule {
-    cidr        = "192.168.16.0/20"
-    ip_protocol = "udp"
-    from_port   = 1
-    to_port     = 65535
-  }
+resource "openstack_networking_secgroup_rule_v2" "security_group_management_rule4" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  remote_ip_prefix  = "192.168.16.0/20"
+  protocol          = "udp"
+  security_group_id = openstack_networking_secgroup_v2.security_group_management.id
+}
 
-  rule {
-    cidr        = "0.0.0.0/0"
-    ip_protocol = "icmp"
-    from_port   = -1
-    to_port     = -1
-  }
+resource "openstack_networking_secgroup_rule_v2" "security_group_management_rule5" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  remote_ip_prefix  = "0.0.0.0/0"
+  protocol          = "icmp"
+  security_group_id = openstack_networking_secgroup_v2.security_group_management.id
 }
 
 resource "openstack_networking_secgroup_rule_v2" "security_group_rule_vrrp" {
@@ -73,7 +85,7 @@ resource "openstack_networking_secgroup_rule_v2" "security_group_rule_vrrp" {
   ethertype         = "IPv4"
   protocol          = "112" # vrrp
   remote_ip_prefix  = "0.0.0.0/0"
-  security_group_id = openstack_compute_secgroup_v2.security_group_node.id
+  security_group_id = openstack_networking_secgroup_v2.security_group_node.id
 }
 
 ############

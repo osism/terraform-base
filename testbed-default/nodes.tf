@@ -1,7 +1,7 @@
 resource "openstack_networking_port_v2" "node_port_management" {
   count              = var.number_of_nodes
   network_id         = openstack_networking_network_v2.net_management.id
-  security_group_ids = [openstack_compute_secgroup_v2.security_group_node.id]
+  security_group_ids = [openstack_networking_secgroup_v2.security_group_node.id]
 
   fixed_ip {
     ip_address = "192.168.16.1${count.index}"

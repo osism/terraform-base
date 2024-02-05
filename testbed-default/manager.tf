@@ -1,7 +1,7 @@
 resource "openstack_networking_port_v2" "manager_port_management" {
   network_id = openstack_networking_network_v2.net_management.id
   security_group_ids = [
-    openstack_compute_secgroup_v2.security_group_management.id
+    openstack_networking_secgroup_v2.security_group_management.id
   ]
 
   fixed_ip {

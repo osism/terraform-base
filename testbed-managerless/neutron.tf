@@ -7,7 +7,7 @@ resource "openstack_networking_secgroup_v2" "security_group_node" {
   description = "node security group"
 }
 
-resource "openstack_networking_secgroup_rule_v2" "security_group_rule_vrrp" {
+resource "openstack_networking_secgroup_rule_v2" "security_group_node_rule1" {
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = "tcp"
@@ -15,7 +15,7 @@ resource "openstack_networking_secgroup_rule_v2" "security_group_rule_vrrp" {
   security_group_id = openstack_networking_secgroup_v2.security_group_node.id
 }
 
-resource "openstack_networking_secgroup_rule_v2" "security_group_rule_vrrp" {
+resource "openstack_networking_secgroup_rule_v2" "security_group_node_rule2" {
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = "udp"
@@ -23,7 +23,7 @@ resource "openstack_networking_secgroup_rule_v2" "security_group_rule_vrrp" {
   security_group_id = openstack_networking_secgroup_v2.security_group_node.id
 }
 
-resource "openstack_networking_secgroup_rule_v2" "security_group_rule_vrrp" {
+resource "openstack_networking_secgroup_rule_v2" "security_group_node_rule3" {
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = "icmp"

@@ -25,6 +25,20 @@ resource "openstack_blockstorage_volume_v3" "manager_base_volume" {
   size              = var.volume_size_base
   availability_zone = var.volume_availability_zone
   volume_type       = var.volume_type
+
+  lifecycle {
+    ignore_changes = [
+      # When specifying images by name, their ID might change when they
+      # are updated.
+      # Replacing the whole environment in this case is probably not
+      # what is expected by the user
+      image_id,
+    ]
+    replace_triggered_by = [
+      # Explicitly changing the image should trigger recreation
+      terraform_data.image
+    ]
+  }
 }
 
 resource "openstack_compute_instance_v2" "manager_server" {
@@ -37,6 +51,19 @@ resource "openstack_compute_instance_v2" "manager_server" {
   depends_on = [
     null_resource.node_semaphore
   ]
+
+  lifecycle {
+    ignore_changes = [
+      # When specifying images by name, their ID might change when they
+      # are updated.
+      # Replacing the whole environment in this case is probably not
+      # what is expected by the user
+      image_id,
+    ]
+    replace_triggered_by = [
+      terraform_data.image
+    ]
+  }
 
   network { port = openstack_networking_port_v2.manager_port_management.id }
 

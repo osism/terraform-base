@@ -13,6 +13,7 @@ resource "openstack_networking_floatingip_associate_v2" "node_floating_ip_associ
 resource "openstack_networking_router_v2" "router" {
   name                = var.prefix
   external_network_id = data.openstack_networking_network_v2.public.id
+  depends_on          = [openstack_networking_subnet_v2.subnet_management]
 }
 
 resource "openstack_networking_router_interface_v2" "router_interface" {

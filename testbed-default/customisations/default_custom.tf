@@ -37,6 +37,10 @@ write_files:
       touch /var/lib/apt/periodic/update-success-stamp
       echo 'network: {config: disabled}' > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
       chown -R ubuntu:ubuntu /home/ubuntu
+
+      if [[ -e /etc/OTC_region ]]; then
+          echo 'GNUTLS_CPUID_OVERRIDE=0x1' >> /etc/environment
+      fi
     path: /usr/local/bin/osism-testbed.sh
     permissions: '0755'
 runcmd:

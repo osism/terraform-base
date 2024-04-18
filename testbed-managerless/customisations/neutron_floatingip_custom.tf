@@ -11,7 +11,7 @@ resource "openstack_networking_floatingip_associate_v2" "manager_floating_ip_ass
 resource "openstack_networking_router_v2" "router" {
   name                = var.prefix
   external_network_id = data.openstack_networking_network_v2.public.id
-  depends_on          = [openstack_networking_subnet_v2.subnet_management, openstack_networking_secgroup_v2.security_group_node]
+  depends_on          = [openstack_networking_subnet_v2.subnet_management]
 }
 
 resource "openstack_networking_router_interface_v2" "router_interface" {

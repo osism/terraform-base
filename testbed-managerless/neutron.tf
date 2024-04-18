@@ -5,6 +5,7 @@
 resource "openstack_networking_secgroup_v2" "security_group_node" {
   name        = "${var.prefix}-node"
   description = "node security group"
+  depends_on  = [openstack_networking_router_v2.router]
 }
 
 resource "openstack_networking_secgroup_rule_v2" "security_group_node_rule1" {

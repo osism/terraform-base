@@ -28,4 +28,18 @@ resource "openstack_blockstorage_volume_v3" "node_base_volume" {
   size              = var.volume_size_base
   availability_zone = var.volume_availability_zone
   volume_type       = var.volume_type
+
+  lifecycle {
+    ignore_changes = [
+      # When specifying images by name, their ID might change when they
+      # are updated.
+      # Replacing the whole environment in this case is probably not
+      # what is expected by the user
+      image_id,
+    ]
+    replace_triggered_by = [
+      # Explicitly changing the image should trigger recreation
+      terraform_data.image_node
+    ]
+  }
 }

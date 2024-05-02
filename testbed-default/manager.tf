@@ -106,6 +106,7 @@ write_files:
       export OPENSTACK_VERSION=${var.openstack_version}
 
       export REFSTACK=${var.refstack}
+      export TEMPEST=${var.tempest}
       export IS_ZUUL=${var.is_zuul}
 
     path: /opt/manager-vars.sh

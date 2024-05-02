@@ -72,6 +72,11 @@ variable "refstack" {
   default = false
 }
 
+variable "tempest" {
+  type    = bool
+  default = false
+}
+
 variable "configuration_version" {
   type    = string
   default = "main"

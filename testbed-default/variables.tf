@@ -94,7 +94,7 @@ variable "manager_version" {
 
 variable "openstack_version" {
   type    = string
-  default = "2023.1"
+  default = "2023.2"
 }
 
 variable "number_of_nodes" {

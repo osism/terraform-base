@@ -7,6 +7,11 @@ variable "prefix" {
   default = "testbed"
 }
 
+variable "keypair" {
+  type    = string
+  default = "testbed"
+}
+
 variable "image" {
   type    = string
   default = "Ubuntu 22.04"

@@ -49,7 +49,8 @@ resource "openstack_compute_instance_v2" "manager_server" {
   config_drive      = var.enable_config_drive
 
   depends_on = [
-    null_resource.node_semaphore
+    null_resource.node_semaphore,
+    openstack_networking_floatingip_v2.manager_floating_ip
   ]
 
   lifecycle {
@@ -109,7 +110,7 @@ write_files:
       export TEMPEST=${var.tempest}
       export IS_ZUUL=${var.is_zuul}
 
-      export MANAGER_PUBLIC_IP_ADDRESS=${openstack_compute_instance_v2.manager_server.access_ip_v4}
+      export MANAGER_PUBLIC_IP_ADDRESS=${openstack_networking_floatingip_v2.manager_floating_ip.address}
 
     path: /opt/manager-vars.sh
     permissions: '0644'

@@ -126,3 +126,8 @@ variable "is_zuul" {
   type    = bool
   default = false
 }
+
+variable "external_api" {
+  type    = bool
+  default = false
+}

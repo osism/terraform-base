@@ -109,6 +109,8 @@ write_files:
       export TEMPEST=${var.tempest}
       export IS_ZUUL=${var.is_zuul}
 
+      export MANAGER_PUBLIC_IP_ADDRESS=${openstack_compute_instance_v2.manager_server.access_ip_v4}
+
     path: /opt/manager-vars.sh
     permissions: '0644'
 runcmd:

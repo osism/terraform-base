@@ -109,6 +109,7 @@ write_files:
       export TEMPEST=${var.tempest}
       export IS_ZUUL=${var.is_zuul}
 
+      export API_FQDN=${var.api_fqdn}
     path: /opt/manager-vars.sh
     permissions: '0644'
 runcmd:

@@ -126,3 +126,8 @@ variable "is_zuul" {
   type    = bool
   default = false
 }
+
+variable "api_fqdn" {
+  type    = string
+  default = "api.testbed.osism.xyz"
+}

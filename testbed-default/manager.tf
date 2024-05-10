@@ -111,6 +111,7 @@ write_files:
       export IS_ZUUL=${var.is_zuul}
 
       export MANAGER_PUBLIC_IP_ADDRESS=${openstack_networking_floatingip_v2.manager_floating_ip.address}
+      export EXTERNAL_API=${var.external_api}
 
     path: /opt/manager-vars.sh
     permissions: '0644'

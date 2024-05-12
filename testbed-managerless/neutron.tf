@@ -33,6 +33,7 @@ resource "openstack_networking_secgroup_rule_v2" "security_group_node_rule3" {
 }
 
 resource "openstack_networking_secgroup_rule_v2" "security_group_rule_vrrp" {
+  description       = "vrrp"
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = "112" # vrrp

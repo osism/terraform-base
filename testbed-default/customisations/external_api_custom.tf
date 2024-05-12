@@ -177,3 +177,15 @@ resource "openstack_networking_secgroup_rule_v2" "security_group_management_rule
   port_range_max    = 5050
   security_group_id = openstack_networking_secgroup_v2.security_group_management.id
 }
+
+# novnc
+resource "openstack_networking_secgroup_rule_v2" "security_group_management_rule_external_api_16" {
+  description       = "novnc"
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  remote_ip_prefix  = "0.0.0.0/0"
+  protocol          = "tcp"
+  port_range_min    = 6080
+  port_range_max    = 6080
+  security_group_id = openstack_networking_secgroup_v2.security_group_management.id
+}

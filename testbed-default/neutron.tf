@@ -39,6 +39,7 @@ resource "openstack_networking_secgroup_v2" "security_group_management" {
 }
 
 resource "openstack_networking_secgroup_rule_v2" "security_group_management_rule1" {
+  description       = "ssh"
   direction         = "ingress"
   ethertype         = "IPv4"
   remote_ip_prefix  = "0.0.0.0/0"
@@ -49,6 +50,7 @@ resource "openstack_networking_secgroup_rule_v2" "security_group_management_rule
 }
 
 resource "openstack_networking_secgroup_rule_v2" "security_group_management_rule2" {
+  description       = "wireguard"
   direction         = "ingress"
   ethertype         = "IPv4"
   remote_ip_prefix  = "0.0.0.0/0"
@@ -83,6 +85,7 @@ resource "openstack_networking_secgroup_rule_v2" "security_group_management_rule
 }
 
 resource "openstack_networking_secgroup_rule_v2" "security_group_rule_vrrp" {
+  description       = "vrrp"
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = "112" # vrrp

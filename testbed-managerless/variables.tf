@@ -14,7 +14,7 @@ variable "keypair" {
 
 variable "image" {
   type    = string
-  default = "Ubuntu 22.04"
+  default = "Debian 12"
 }
 
 variable "image_user" {
@@ -24,7 +24,7 @@ variable "image_user" {
 
 variable "image_node" {
   type    = string
-  default = "Ubuntu 22.04"
+  default = "Debian 12"
 }
 
 variable "image_node_user" {

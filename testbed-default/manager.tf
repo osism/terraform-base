@@ -117,6 +117,8 @@ write_files:
       export IMAGE_USER=${var.image_user}
       export IMAGE_NODE_USER=${var.image_node_user}
 
+      export CEPH_STACK=${var.ceph_stack}
+
     path: /opt/manager-vars.sh
     permissions: '0644'
 runcmd:

@@ -84,7 +84,7 @@ write_files:
       chronyc -a makestep
       touch /var/lib/apt/periodic/update-success-stamp
       echo 'network: {config: disabled}' > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
-      chown -R ubuntu:ubuntu /home/ubuntu
+      chown -R ${var.image_user}:${var.image_user}/home/${var.image_user}
 
       if [[ -e /etc/OTC_region ]]; then
           echo 'GNUTLS_CPUID_OVERRIDE=0x1' >> /etc/environment
@@ -92,11 +92,11 @@ write_files:
     path: /usr/local/bin/osism-testbed.sh
     permissions: '0755'
   - content: ${openstack_compute_keypair_v2.key.public_key}
-    path: /home/ubuntu/.ssh/id_rsa.pub
+    path: /home/${var.image_user}/.ssh/id_rsa.pub
     permissions: '0600'
   - content: |
       ${indent(6, openstack_compute_keypair_v2.key.private_key)}
-    path: /home/ubuntu/.ssh/id_rsa
+    path: /home/${var.image_user}/.ssh/id_rsa
     permissions: '0600'
   - content: |
       export NUMBER_OF_NODES=${var.number_of_nodes}

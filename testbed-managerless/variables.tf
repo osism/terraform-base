@@ -17,9 +17,19 @@ variable "image" {
   default = "Ubuntu 22.04"
 }
 
+variable "image_user" {
+  type    = string
+  default = "ubuntu"
+}
+
 variable "image_node" {
   type    = string
   default = "Ubuntu 22.04"
+}
+
+variable "image_node_user" {
+  type    = string
+  default = "ubuntu"
 }
 
 variable "volume_size_base" {

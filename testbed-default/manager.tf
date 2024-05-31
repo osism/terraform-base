@@ -84,7 +84,7 @@ write_files:
       chronyc -a makestep
       touch /var/lib/apt/periodic/update-success-stamp
       echo 'network: {config: disabled}' > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
-      chown -R ${var.image_user}:${var.image_user}/home/${var.image_user}
+      chown -R ${var.image_user}:${var.image_user} /home/${var.image_user}
 
       if [[ -e /etc/OTC_region ]]; then
           echo 'GNUTLS_CPUID_OVERRIDE=0x1' >> /etc/environment

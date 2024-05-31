@@ -113,6 +113,9 @@ write_files:
       export MANAGER_PUBLIC_IP_ADDRESS=${openstack_networking_floatingip_v2.manager_floating_ip.address}
       export EXTERNAL_API=${var.external_api}
 
+      export IMAGE_USER=${var.image_user}
+      export IMAGE_NODE_USER=${var.image_node_user}
+
     path: /opt/manager-vars.sh
     permissions: '0644'
 runcmd:

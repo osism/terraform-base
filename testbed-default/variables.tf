@@ -19,7 +19,7 @@ variable "image" {
 
 variable "image_user" {
   type    = string
-  default = "ubuntu"
+  default = "debian"
 }
 
 variable "image_node" {
@@ -29,7 +29,7 @@ variable "image_node" {
 
 variable "image_node_user" {
   type    = string
-  default = "ubuntu"
+  default = "debian"
 }
 
 variable "volume_size_base" {

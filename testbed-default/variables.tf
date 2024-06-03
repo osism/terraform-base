@@ -14,22 +14,22 @@ variable "keypair" {
 
 variable "image" {
   type    = string
-  default = "Ubuntu 22.04"
+  default = "Debian 12"
 }
 
 variable "image_user" {
   type    = string
-  default = "ubuntu"
+  default = "debian"
 }
 
 variable "image_node" {
   type    = string
-  default = "Ubuntu 22.04"
+  default = "Debian 12"
 }
 
 variable "image_node_user" {
   type    = string
-  default = "ubuntu"
+  default = "debian"
 }
 
 variable "volume_size_base" {

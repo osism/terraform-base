@@ -82,6 +82,11 @@ variable "deploy_monitoring" {
   default = false
 }
 
+variable "ara" {
+  type    = bool
+  default = true
+}
+
 variable "refstack" {
   type    = bool
   default = false

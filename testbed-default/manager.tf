@@ -106,6 +106,7 @@ write_files:
       export MANAGER_VERSION=${var.manager_version}
       export OPENSTACK_VERSION=${var.openstack_version}
 
+      export ARA=${var.ara}
       export REFSTACK=${var.refstack}
       export TEMPEST=${var.tempest}
       export IS_ZUUL=${var.is_zuul}

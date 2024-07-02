@@ -146,3 +146,14 @@ variable "external_api" {
   type    = bool
   default = false
 }
+
+variable "ceph_stack" {
+  type    = string
+  default = "ceph-ansible"
+  validation {
+    condition = (
+      can(regex("^(ceph-ansible|rook)$", var.ceph_stack))
+    )
+    error_message = "Invalid Ceph Stack provided. Options: ceph-ansible|rook"
+  }
+}

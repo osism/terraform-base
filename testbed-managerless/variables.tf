@@ -14,22 +14,22 @@ variable "keypair" {
 
 variable "image" {
   type    = string
-  default = "Ubuntu 22.04"
+  default = "CentOS Stream 9"
 }
 
 variable "image_user" {
   type    = string
-  default = "ubuntu"
+  default = "cloud-user"
 }
 
 variable "image_node" {
   type    = string
-  default = "Ubuntu 22.04"
+  default = "CentOS Stream 9"
 }
 
 variable "image_node_user" {
   type    = string
-  default = "ubuntu"
+  default = "cloud-user"
 }
 
 variable "volume_size_base" {

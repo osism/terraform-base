@@ -82,11 +82,6 @@ variable "deploy_monitoring" {
   default = false
 }
 
-variable "refstack" {
-  type    = bool
-  default = false
-}
-
 variable "tempest" {
   type    = bool
   default = false

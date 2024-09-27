@@ -77,11 +77,6 @@ variable "public" {
   default = "external"
 }
 
-variable "deploy_monitoring" {
-  type    = bool
-  default = false
-}
-
 variable "ara" {
   type    = bool
   default = true

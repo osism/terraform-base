@@ -2,7 +2,6 @@
 - job:
     name: terraform-base-validate
     abstract: true
-    pre-run: playbooks/pre-validate.yml
     run: playbooks/validate.yml
 
 - job:

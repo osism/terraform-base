@@ -11,6 +11,12 @@
       name: testbed-default
 
 - job:
+    name: terraform-base-validate-testbed-equinix-metal
+    parent: terraform-base-validate
+    vars:
+      name: testbed-equinix-metal
+
+- job:
     name: terraform-base-validate-testbed-managerless
     parent: terraform-base-validate
     vars:
@@ -21,10 +27,12 @@
     check:
       jobs:
         - terraform-base-validate-testbed-default
+        - terraform-base-validate-testbed-equinix-metal
         - terraform-base-validate-testbed-managerless
         - yamllint
     periodic-daily:
       jobs:
         - terraform-base-validate-testbed-default
+        - terraform-base-validate-testbed-equinix-metal
         - terraform-base-validate-testbed-managerless
         - yamllint

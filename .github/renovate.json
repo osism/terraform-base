@@ -6,10 +6,10 @@
   "regexManagers":[
     {
       "fileMatch":[
-        "^playbooks\\/pre-validate\\.yml"
+        "^playbooks\\/validate\\.yml"
       ],
       "matchStrings":[
-        "terraform_version: (?<currentValue>.*?) # renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)?\\s"
+        "opentofu_version: '(?<currentValue>.*?)' # renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)?\\s"
      ],
      "extractVersionTemplate": "^v(?<version>.*)$"
     }

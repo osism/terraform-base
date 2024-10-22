@@ -35,8 +35,8 @@ resource "local_file" "inventory" {
   filename        = "inventory.${var.cloud_provider}"
   file_permission = "0644"
   content         = <<-EOT
-testbed-node-0.testbed.osism.xyz ansible_host=${openstack_networking_floatingip_v2.node_floating_ip[0].address} ansible_user=${var.image_node_user}
-testbed-node-1.testbed.osism.xyz ansible_host=${openstack_networking_floatingip_v2.node_floating_ip[1].address} ansible_user=${var.image_node_user}
-testbed-node-2.testbed.osism.xyz ansible_host=${openstack_networking_floatingip_v2.node_floating_ip[2].address} ansible_user=${var.image_node_user}
+testbed-node-0 ansible_host=${openstack_networking_floatingip_v2.node_floating_ip[0].address} ansible_user=${var.image_node_user}
+testbed-node-1 ansible_host=${openstack_networking_floatingip_v2.node_floating_ip[1].address} ansible_user=${var.image_node_user}
+testbed-node-2 ansible_host=${openstack_networking_floatingip_v2.node_floating_ip[2].address} ansible_user=${var.image_node_user}
 EOT
 }

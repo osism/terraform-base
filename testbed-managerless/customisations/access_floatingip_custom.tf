@@ -12,5 +12,5 @@ resource "local_file" "MANAGER_ADDRESS" {
 resource "local_file" "inventory" {
   filename        = "inventory.${var.cloud_provider}"
   file_permission = "0644"
-  content         = "testbed-manager.testbed.osism.xyz ansible_host=${openstack_networking_floatingip_v2.manager_floating_ip.address} ansible_user=${var.image_node_user}\n"
+  content         = "testbed-manager ansible_host=${openstack_networking_floatingip_v2.manager_floating_ip.address} ansible_user=${var.image_node_user}\n"
 }

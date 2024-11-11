@@ -109,7 +109,7 @@ variable "openstack_version" {
 
 variable "number_of_nodes" {
   type    = number
-  default = 3
+  default = 6
 }
 
 variable "number_of_volumes" {

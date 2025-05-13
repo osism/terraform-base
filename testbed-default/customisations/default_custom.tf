@@ -49,16 +49,22 @@ final_message: "The system is finally up, after $UPTIME seconds"
 EOT
 }
 
-resource "openstack_compute_volume_attach_v2" "node_volume_attachment" {
-  count       = var.number_of_nodes * var.number_of_volumes
-  instance_id = openstack_compute_instance_v2.node_server[count.index % var.number_of_nodes].id
-  volume_id   = openstack_blockstorage_volume_v3.node_volume[count.index].id
+locals {
+  number_of_nodes_with_volumes = var.number_of_nodes <= 3 ? var.number_of_nodes : (var.number_of_nodes - 3)
+  first_node_with_volumes = var.number_of_nodes <= 3 ? 0 : 3
+  total_volumes = local.number_of_nodes_with_volumes * var.number_of_volumes
 }
 
 resource "openstack_blockstorage_volume_v3" "node_volume" {
-  count             = var.number_of_nodes * var.number_of_volumes
-  name              = "${var.prefix}-volume-${count.index}-node-${count.index % var.number_of_nodes}"
+  count             = local.total_volumes
+  name              = "${var.prefix}-volume-${count.index}-node-${(count.index % local.number_of_nodes_with_volumes) + local.first_node_with_volumes}"
   size              = var.volume_size_storage
   availability_zone = var.volume_availability_zone
   volume_type       = var.volume_type
+}
+
+resource "openstack_compute_volume_attach_v2" "node_volume_attachment" {
+  count       = local.total_volumes
+  instance_id = openstack_compute_instance_v2.node_server[(count.index % local.number_of_nodes_with_volumes) + local.first_node_with_volumes].id
+  volume_id   = openstack_blockstorage_volume_v3.node_volume[count.index].id
 }

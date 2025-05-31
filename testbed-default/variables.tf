@@ -147,3 +147,8 @@ variable "ceph_stack" {
     error_message = "Invalid Ceph Stack provided. Options: ceph-ansible|rook"
   }
 }
+
+variable "deploy_mode" {
+  type    = string
+  default = "manager"
+}

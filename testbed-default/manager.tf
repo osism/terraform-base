@@ -107,6 +107,7 @@ write_files:
       export OPENSTACK_VERSION=${var.openstack_version}
 
       export ARA=${var.ara}
+      export DEPLOY_MODE=${var.deploy_mode}
       export TEMPEST=${var.tempest}
       export IS_ZUUL=${var.is_zuul}
 

@@ -107,9 +107,4 @@ resource "openstack_networking_subnet_v2" "subnet_management" {
   cidr            = "192.168.16.0/20"
   ip_version      = 4
   dns_nameservers = var.dns_nameservers
-
-  allocation_pool {
-    start = "192.168.31.100"
-    end   = "192.168.31.200"
-  }
 }

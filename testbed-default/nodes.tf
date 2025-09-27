@@ -7,22 +7,6 @@ resource "openstack_networking_port_v2" "node_port_management" {
     ip_address = "192.168.16.1${count.index}"
     subnet_id  = openstack_networking_subnet_v2.subnet_management.id
   }
-
-  allowed_address_pairs {
-    ip_address = "192.168.16.8/20"
-  }
-
-  allowed_address_pairs {
-    ip_address = "192.168.16.9/20"
-  }
-
-  allowed_address_pairs {
-    ip_address = "192.168.16.254/20"
-  }
-
-  allowed_address_pairs {
-    ip_address = "192.168.112.0/20"
-  }
 }
 
 resource "openstack_blockstorage_volume_v3" "node_base_volume" {

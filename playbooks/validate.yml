@@ -6,7 +6,7 @@
     name: testbed-default
 
     opentofu_binary: tofu
-    opentofu_version: '1.10.5' # renovate: datasource=github-tags depName=opentofu/opentofu
+    opentofu_version: '1.10.6' # renovate: datasource=github-tags depName=opentofu/opentofu
     opentofu_download_url: "https://github.com/opentofu/opentofu/releases/download/v{{ opentofu_version }}/tofu_{{ opentofu_version }}_linux_amd64.zip"
 
   tasks:

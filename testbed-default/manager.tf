@@ -10,11 +10,7 @@ resource "openstack_networking_port_v2" "manager_port_management" {
   }
 
   allowed_address_pairs {
-    ip_address = "192.168.16.8/20"
-  }
-
-  allowed_address_pairs {
-    ip_address = "192.168.112.0/20"
+    ip_address = "192.168.16.8/32"
   }
 }
 

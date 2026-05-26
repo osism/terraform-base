@@ -66,8 +66,6 @@ resource "openstack_compute_instance_v2" "manager_server" {
 
   user_data = <<-EOT
 #cloud-config
-network:
-   config: disabled
 ntp:
   enabled: true
   ntp_client: chrony

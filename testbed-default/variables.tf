@@ -142,9 +142,9 @@ variable "ceph_stack" {
   default = "ceph-ansible"
   validation {
     condition = (
-      can(regex("^(ceph-ansible|rook)$", var.ceph_stack))
+      can(regex("^(ceph-ansible)$", var.ceph_stack))
     )
-    error_message = "Invalid Ceph Stack provided. Options: ceph-ansible|rook"
+    error_message = "Invalid Ceph Stack provided. Options: ceph-ansible"
   }
 }
 
